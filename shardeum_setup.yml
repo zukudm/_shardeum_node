@@ -97,9 +97,7 @@
           command: sh -c "operator-cli gui start"
         register: out_gui
 
-      - name: Print GUI start output
-        debug:
-          msg: "{{ out_gui }}"  
+      
 
 
 
