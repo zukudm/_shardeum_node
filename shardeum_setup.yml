@@ -30,6 +30,12 @@
       #   get_url:
       #     url: "{{ dockerfile_url }}"
       #     dest: "./"
+
+      - name: Git checkout
+        ansible.builtin.git:
+          repo: '{{ git_url }}'
+          dest: "{{ git_dst }}"
+          force: true
           
       - name: Build image and with build args
         community.docker.docker_image:
@@ -40,7 +46,7 @@
           build:
             nocache: true
             pull: true
-            path: "./"
+            path: "{{ git_dst }}"
             dockerfile: "{{ dockerfile_name }}"
             args:
               RUNDASHBOARD: "y"

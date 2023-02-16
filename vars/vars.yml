@@ -8,6 +8,8 @@ dockerfile: Dockerfile
 image_name: shardeum
 password: mypassword
 dockerfile_url: https://gitlab.com/shardeum/validator/dashboard/-/raw/main/Dockerfile
+git_url: https://gitlab.com/shardeum/validator/dashboard.git
+git_dst: "./.shardeum/"
 dockerfile_name: Dockerfile
 image_tag: test-dashboard
 
