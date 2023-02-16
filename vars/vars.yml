@@ -25,7 +25,7 @@ env_vars:
     SERVERIP: "{{ ansible_default_ipv4.address }}"
 
 ports_list: 
-    - "8081:8080"
+    - "8081:8081"
     - "9001:9001"
     - "10001:10001"
     - "3001:3001"
