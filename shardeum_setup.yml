@@ -48,7 +48,7 @@
 
       - name: Print default IPv4 
         debug:
-          msg: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+          msg: "{{ SERVERIP }}"
 
       # - name: Start the container 
       #   community.docker.docker_container:
