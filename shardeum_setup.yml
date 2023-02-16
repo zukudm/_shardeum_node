@@ -46,6 +46,10 @@
               RUNDASHBOARD: "y"
           source: build
 
+      - name: Print default IPv4 
+        debug:
+          msg: "{{ SERVERIP }}"
+
       # - name: Start the container 
       #   community.docker.docker_container:
       #     name: "{{ container_name }}"

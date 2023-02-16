@@ -12,15 +12,19 @@ dockerfile_name: Dockerfile
 image_tag: test-dashboard
 
 
-
-source_image_name: eqlabs/pathfinder
-container_mount_point: /usr/share/pathfinder/data
-
-
 shardeum_version: latest
 
 
 massa_githubapi_url: https://api.github.com/repos/massalabs/massa/releases/latest
+
+APP_IP: auto
+APP_SEEDLIST: "archiver-sphinx.shardeum.org"
+APP_MONITOR: "monitor-sphinx.shardeum.org"
+DASHPASS: "mypassword"
+DASHPORT: 8080
+SHMEXT: 9001
+SHMINT: 10001
+SERVERIP: "{{ ansible_default_ipv4.address }}"
 
 
 
