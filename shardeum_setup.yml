@@ -6,6 +6,10 @@
   become: yes    
   
   tasks:
+
+      - name: Check if Docker and Docker Compose are installed
+        include_tasks: "playbooks/check_docker.yml"
+
     
       - name: Remove old container if exists
         community.docker.docker_container:
