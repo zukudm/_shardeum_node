@@ -87,7 +87,7 @@
 
       - name: Print cli status output
         debug:
-          msg: "{{ out_status.stdout_lines }}"
+          msg: "{{ out_status.stdout_lines[0] }}"
 
 
 
