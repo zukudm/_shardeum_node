@@ -77,7 +77,7 @@
       - name: Start node
         community.docker.docker_container_exec: 
           container: "{{ container_name }}"
-          command: sh -c "operator-cli start"
+          command: sh -c "operator-cli status"
         register: out_start
 
       - name: Print cli start output
