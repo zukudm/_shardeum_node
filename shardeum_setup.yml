@@ -72,7 +72,7 @@
       - name: Start node
         community.docker.docker_container_exec: 
           container: "{{ container_name }}"
-          command: sh -c "ls -l"
+          command: sh -c "operator-cli start"
         register: out_start
 
       - name: Print cli start output
@@ -87,7 +87,7 @@
 
       - name: Print cli status output
         debug:
-          msg: "{{ out_status }}"
+          msg: "{{ out_status.stdout_lines[0].state }}"
 
 
 
