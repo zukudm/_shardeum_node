@@ -1,0 +1,59 @@
+- name: Install 
+  vars_files: 
+    - vars/vars.yml
+  hosts: "{{ host }}"
+  gather_facts: no
+  become: yes    
+  
+  tasks:
+    
+      - name: Remove old container if exists
+        community.docker.docker_container:
+          name: "{{ container_name }}"
+          state: absent
+
+      - name: Remove an old volume if exists
+        community.docker.docker_volume:
+          name: "{{ volume_name }}"
+          state: absent
+
+
+      - name: Create a docker network
+        docker_network:
+          name: "{{ network_name }}"
+
+      
+      - name: Build image and with build args
+        community.docker.docker_image:
+          name: "{{ image_name }}"
+          tag: "{{ image_tag }}"
+          state: present
+          force_absent: true
+          build:
+            nocache: true
+            path: "./"
+            dockerfile: "{{ dockerfile_url }}"
+            args:
+              RUNDASHBOARD: "y"
+          source: build
+
+      # - name: Start the container 
+      #   community.docker.docker_container:
+      #     name: "{{ container_name }}"
+      #     image: "{{ image_name }}:{{ version }}"
+      #     labels: 
+      #       version: "{{ version }}"
+      #     pull: false
+      #     detach: yes
+      #     restart_policy: unless-stopped
+      #     networks: 
+      #       - name: "{{ network_name }}"
+      #     # volumes: 
+      #     #   - "{{ volume_name }}:{{ container_mount_point }}"
+      #     cpus: "{{ cpus }}"
+      #     cpu_shares: "{{ cpu_shares }}"
+      #     memory: "{{ memory }}"
+      #     memory_reservation: "{{ memory_reservation }}"   
+      #     command: ["/root/massa/massa-node/massa-node", "-p", "mypassword"]
+
+     

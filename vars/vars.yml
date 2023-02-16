@@ -1,0 +1,42 @@
+---
+host: localhost
+container_name: shardeum_node
+volume_name: shardeum_volume
+network_name: shardeum_net
+working_user: ansible
+dockerfile: Dockerfile
+image_name: shardeum
+password: mypassword
+dockerfile_url: https://gitlab.com/shardeum/validator/dashboard/-/raw/main/Dockerfile
+image_tag: test-dashboard
+
+
+
+source_image_name: eqlabs/pathfinder
+container_mount_point: /usr/share/pathfinder/data
+
+
+shardeum_version: latest
+
+
+massa_githubapi_url: https://api.github.com/repos/massalabs/massa/releases/latest
+
+
+
+
+cpus: 1
+cpu_shares: 1024
+memory: 6144m
+memory_reservation: 4098m
+
+
+
+
+
+
+
+
+
+
+
+
