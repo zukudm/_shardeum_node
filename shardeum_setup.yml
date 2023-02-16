@@ -22,7 +22,11 @@
         docker_network:
           name: "{{ network_name }}"
 
-      
+      - name: Download Dockerfile from remote server
+        get_url:
+          url: "{{ dockerfile_url }}"
+          dest: "./"
+          
       - name: Build image and with build args
         community.docker.docker_image:
           name: "{{ image_name }}"
@@ -31,8 +35,9 @@
           force_absent: true
           build:
             nocache: true
+            pull: true
             path: "./"
-            dockerfile: "{{ dockerfile_url }}"
+            dockerfile: "{{ dockerfile_name }}"
             args:
               RUNDASHBOARD: "y"
           source: build
