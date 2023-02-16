@@ -75,10 +75,6 @@
           command: sh -c "operator-cli start"
         register: out_start
 
-      - name: Print cli start output
-        debug:
-          msg: "{{ out_start }}"
-
       - name: Get node status
         community.docker.docker_container_exec: 
           container: "{{ container_name }}"
@@ -88,6 +84,18 @@
       - name: Print cli status output
         debug:
           msg: "{{ out_status.stdout_lines[0] }}"
+
+      
+      - name: Start GUI
+        community.docker.docker_container_exec: 
+          container: "{{ container_name }}"
+          command: sh -c "operator-cli gui start"
+        register: out_gui
+
+      - name: Print GUI start output
+        debug:
+          msg: "{{ out_gui.stdout_lines }}"  
+
 
 
 
