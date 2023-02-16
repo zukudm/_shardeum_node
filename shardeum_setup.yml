@@ -69,18 +69,16 @@
           # memory_reservation: "{{ memory_reservation }}"   
           # command: ["/root/massa/massa-node/massa-node", "-p", "mypassword"]
 
-      - name: Wait for shardeum to start
-        ansible.builtin.wait_for:
-          port: 8081
-          delay: 10
-
-
 
       - name: Start node
         community.docker.docker_container_exec: 
           container: "{{ container_name }}"
           command: sh -c "operator-cli start"
         register: out_start
+        failed_when: result.rc != 0
+        until: result.rc == 0
+        retries: 6
+        delay: 10
 
       - name: Get node status
         community.docker.docker_container_exec: 
