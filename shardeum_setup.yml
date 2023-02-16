@@ -11,10 +11,10 @@
         include_tasks: "playbooks/check_docker.yml"
 
     
-      - name: Remove old container if exists
-        community.docker.docker_container:
-          name: "{{ container_name }}"
-          state: absent
+      # - name: Remove old container if exists
+      #   community.docker.docker_container:
+      #     name: "{{ container_name }}"
+      #     state: absent
 
       - name: Remove an old volume if exists
         community.docker.docker_volume:
@@ -25,11 +25,6 @@
       - name: Create a docker network
         docker_network:
           name: "{{ network_name }}"
-
-      # - name: Download Dockerfile from remote server
-      #   get_url:
-      #     url: "{{ dockerfile_url }}"
-      #     dest: "./"
 
       - name: Git checkout
         ansible.builtin.git:
@@ -82,7 +77,7 @@
 
       - name: Print cli start output
         debug:
-          msg: out_start
+          msg: "{{ out_start }}"
 
       - name: Get node status
         community.docker.docker_container_exec: 
