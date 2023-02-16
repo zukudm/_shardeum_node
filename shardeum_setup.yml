@@ -94,7 +94,7 @@
 
       - name: Print GUI start output
         debug:
-          msg: "{{ out_gui.stdout_lines }}"  
+          msg: "{{ out_gui.stdout }}"  
 
 
 
