@@ -17,14 +17,18 @@ shardeum_version: latest
 
 massa_githubapi_url: https://api.github.com/repos/massalabs/massa/releases/latest
 
-APP_IP: auto
-APP_SEEDLIST: "archiver-sphinx.shardeum.org"
-APP_MONITOR: "monitor-sphinx.shardeum.org"
-DASHPASS: "mypassword"
-DASHPORT: 8080
-SHMEXT: 9001
-SHMINT: 10001
-SERVERIP: "{{ ansible_default_ipv4.address }}"
+env_vars:
+    APP_IP: auto
+    APP_SEEDLIST: "archiver-sphinx.shardeum.org"
+    APP_MONITOR: "monitor-sphinx.shardeum.org"
+    DASHPASS: "mypassword"
+    SERVERIP: "{{ ansible_default_ipv4.address }}"
+
+ports_list: 
+    - "8081:8080"
+    - "9001:9001"
+    - "10001:10001"
+    - "3001:3001"
 
 
 
