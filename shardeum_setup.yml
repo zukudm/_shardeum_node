@@ -53,25 +53,48 @@
           source: build
 
 
-      - name: Start the container 
-        community.docker.docker_container:
-          name: "{{ container_name }}"
-          image: "{{ image_name }}:{{ image_tag }}"
-          labels: 
-            version: "{{ shardeum_version }}"
-          pull: false
-          detach: yes
-          restart_policy: unless-stopped
-          networks: 
-            - name: "{{ network_name }}"
-          env: "{{ env_vars }}"
-          ports: "{{ ports_list }}"
-          # volumes: 
-          #   - "{{ volume_name }}:{{ container_mount_point }}"
-          # cpus: "{{ cpus }}"
-          # cpu_shares: "{{ cpu_shares }}"
-          # memory: "{{ memory }}"
-          # memory_reservation: "{{ memory_reservation }}"   
-          # command: ["/root/massa/massa-node/massa-node", "-p", "mypassword"]
+      # - name: Start the container 
+      #   community.docker.docker_container:
+      #     name: "{{ container_name }}"
+      #     image: "{{ image_name }}:{{ image_tag }}"
+      #     labels: 
+      #       version: "{{ shardeum_version }}"
+      #     pull: false
+      #     detach: yes
+      #     restart_policy: unless-stopped
+      #     networks: 
+      #       - name: "{{ network_name }}"
+      #     env: "{{ env_vars }}"
+      #     ports: "{{ ports_list }}"
+      #     # volumes: 
+      #     #   - "{{ volume_name }}:{{ container_mount_point }}"
+      #     # cpus: "{{ cpus }}"
+      #     # cpu_shares: "{{ cpu_shares }}"
+      #     # memory: "{{ memory }}"
+      #     # memory_reservation: "{{ memory_reservation }}"   
+      #     # command: ["/root/massa/massa-node/massa-node", "-p", "mypassword"]
+
+      - name: Start node
+        community.docker.docker_container_exec: 
+          container: "{{ container_name }}"
+          command: sh -c "operator-cli start"
+        register: out_start
+
+      - name: Print cli start output
+        debug:
+          msg: out_start
+
+      - name: Get node status
+        community.docker.docker_container_exec: 
+          container: "{{ container_name }}"
+          command: sh -c "operator-cli status"
+        register: out_status
+
+      - name: Print cli status output
+        debug:
+          msg: out_status
+
+
+
 
      
