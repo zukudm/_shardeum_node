@@ -25,9 +25,9 @@ env_vars:
     APP_MONITOR: "monitor-sphinx.shardeum.org"
     DASHPASS: "mypassword"
     SERVERIP: "{{ ansible_default_ipv4.address }}"
-    DASHPORT: 8081
-    SHMEXT: 9001
-    SHMINT: 10001
+    DASHPORT: "8081"
+    SHMEXT: "9001"
+    SHMINT: "10001"
 
 
 
