@@ -26,10 +26,10 @@
         docker_network:
           name: "{{ network_name }}"
 
-      - name: Download Dockerfile from remote server
-        get_url:
-          url: "{{ dockerfile_url }}"
-          dest: "./"
+      # - name: Download Dockerfile from remote server
+      #   get_url:
+      #     url: "{{ dockerfile_url }}"
+      #     dest: "./"
           
       - name: Build image and with build args
         community.docker.docker_image:
