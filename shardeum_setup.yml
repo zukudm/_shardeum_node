@@ -70,25 +70,25 @@
           # command: ["/root/massa/massa-node/massa-node", "-p", "mypassword"]
 
 
-      # - name: Start node
-      #   community.docker.docker_container_exec: 
-      #     container: "{{ container_name }}"
-      #     command: sh -c "operator-cli start"
-      #   register: result
-      #   failed_when: result.rc != 0
-      #   until: result.rc == 0
-      #   retries: 15
-      #   delay: 15
+      - name: Start node
+        community.docker.docker_container_exec: 
+          container: "{{ container_name }}"
+          command: sh -c "operator-cli start"
+        register: result
+        failed_when: result.rc != 0
+        until: result.rc == 0
+        retries: 15
+        delay: 15
 
-      # - name: Get node status
-      #   community.docker.docker_container_exec: 
-      #     container: "{{ container_name }}"
-      #     command: sh -c "operator-cli status"
-      #   register: out_status
+      - name: Get node status
+        community.docker.docker_container_exec: 
+          container: "{{ container_name }}"
+          command: sh -c "operator-cli status"
+        register: out_status
 
-      # - name: Print cli status output
-      #   debug:
-      #     msg: "{{ out_status.stdout_lines[0] }}"
+      - name: Print cli status output
+        debug:
+          msg: "{{ out_status.stdout_lines[0] }}"
 
       
       - name: Start GUI
