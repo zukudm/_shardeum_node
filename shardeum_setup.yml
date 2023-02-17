@@ -21,6 +21,13 @@
           name: "{{ volume_name }}"
           state: absent
 
+      - name: Remove image
+        community.docker.docker_image:
+          state: absent
+          name: "{{ item }}"
+          tag: "{{ version }}"
+        with_items: "{{ image_list }} "
+
 
       - name: Create a docker network
         docker_network:
@@ -77,8 +84,8 @@
         register: result
         failed_when: result.rc != 0
         until: result.rc == 0
-        retries: 15
-        delay: 15
+        retries: 10
+        delay: 30
 
       - name: Get node status
         community.docker.docker_container_exec: 

@@ -12,6 +12,9 @@ git_url: https://gitlab.com/shardeum/validator/dashboard.git
 git_dst: "./.shardeum/"
 dockerfile_name: Dockerfile
 image_tag: test-dashboard
+image_list:
+    - "{{ iamge_tag}}"
+    - "registry.gitlab.com/shardeum/server"
 
 
 shardeum_version: latest
