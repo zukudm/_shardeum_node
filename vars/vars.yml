@@ -13,7 +13,7 @@ git_dst: "./.shardeum/"
 dockerfile_name: Dockerfile
 image_tag: test-dashboard
 image_list:
-    - "{{ iamge_tag}}"
+    - "{{ image_tag }}"
     - "registry.gitlab.com/shardeum/server"
 
 
